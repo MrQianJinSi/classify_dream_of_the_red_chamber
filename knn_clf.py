@@ -17,7 +17,7 @@ def cut_book_to_chapter(book_path, save_path_prefix):
   chapter_end_pattern = '(本章完)'
   
   #import ipdb; ipdb.set_trace()
-  with open(book_path, 'r') as f:
+  with open(book_path, 'r', encoding = 'utf-8') as f:
     book = f.read()
 
   beg_pos =  book.find(chapter_begin_pattern)
@@ -28,7 +28,7 @@ def cut_book_to_chapter(book_path, save_path_prefix):
 
     current_chapter = book[beg_pos:end_pos+1]
     current_chapter_path = save_path_prefix + str(chapter_index)
-    with open(current_chapter_path, 'w') as f:
+    with open(current_chapter_path, 'w', encoding = 'utf-8') as f:
       f.write(current_chapter)
     
     beg_pos = book.find(chapter_begin_pattern, end_pos)
@@ -51,7 +51,7 @@ def get_stop_chars(dir_prefix):
   for i in range(1, CHAPTER_NUM+1):
     file_path = dir_prefix + str(i)
     # 读取章节文本
-    with open(file_path) as f:
+    with open(file_path, 'r', encoding = 'utf-8') as f:
       raw_text = f.read().strip()
     # 预处理
     chapter = preprocess_chapter(raw_text)
@@ -84,7 +84,7 @@ def convert_book_to_matrix(dir_prefix, stop_chars):
   for i in range(1, CHAPTER_NUM+1):
     file_path = dir_prefix + str(i)
     # 读取章节文本
-    with open(file_path) as f:
+    with open(file_path, 'r', encoding = 'utf-8') as f:
       raw_text = f.read().strip()
     # 预处理
     chapter = preprocess_chapter(raw_text)
