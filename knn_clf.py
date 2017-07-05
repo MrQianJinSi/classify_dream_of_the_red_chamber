@@ -61,7 +61,7 @@ def get_stop_chars(dir_prefix):
     else:
       stop_chars &= set(chapter)
 
-  return stop_chars
+  return list(stop_chars)
 
 # 求出每个停用字的字频，保存到向量中
 def convert_chapter_to_vector(chapter, stop_chars):
